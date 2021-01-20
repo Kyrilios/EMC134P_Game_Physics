@@ -223,7 +223,7 @@ MonoBehaviour:
   netForce: {x: 0, y: 0, z: 0}
   netForceActive: 0
   forceList:
-  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
 --- !u!4 &426955654 stripped
 Transform:
@@ -610,8 +610,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -500.7, y: -279.9}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -469.7, y: -279.9}
+  m_SizeDelta: {x: 274.41, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1734928346
 MonoBehaviour:
@@ -667,8 +667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c9ee864a273734aba2a736a2d53a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingCar: {fileID: 426955648}
-  startBlinking: 0
+  Asteroid: {fileID: 0}
+  isTrue: 0
 --- !u!1001 &1986768664
 PrefabInstance:
   m_ObjectHideFlags: 0

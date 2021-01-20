@@ -4,72 +4,57 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class TextUI : MonoBehaviour
-{ 
-    Text text;
+{
+    Text textUI;
+    public GameObject Asteroid;
+    public bool isTrue;
+    private bool blink;
 
-    public GameObject movingCar;
-    bool once;
-    public bool startBlinking;
     void Start()
     {
-
-        text =GetComponent<Text>();
-        movingCar = GameObject.Find("Asteroid_4");
-        
+        textUI = GetComponent<Text>();
+        Asteroid = GameObject.Find("Asteroid_4");
         
     }
 
-    void Update(){
-        Debug.Log(movingCar.GetComponent<PhysicsEngine>().netForceActive);
-        if (!once)
-        {
-            FlashingText();
-            once = true;
+    void Update() {
+        if (isTrue == false) {
+            Text();
+            isTrue = true;
         }
     }
-    
 
-
-    void FlashingText(){
-        startBlinking = movingCar.GetComponent<PhysicsEngine>().netForceActive;
-        if (startBlinking)
-        {
-            StartCoroutine(BlinkingBad());
-            startBlinking = false;
-        }else{
-            StartCoroutine(BlinkingGood());
-        }
-        
-    }
-
-    // Update is called once per frame
-    IEnumerator BlinkingBad()
+    void Text()
     {
-        while(true){
-           
-            text.text= "";
-            
+        blink = Asteroid.GetComponent<PhysicsEngine>().netForceActive;
+        if (blink) {
+            StartCoroutine(Unbalanced());
+        } else {
+            StartCoroutine(Balanced());
+        }
+    }
+
+
+    IEnumerator Unbalanced() {
+
+        while (true) {
+
+            textUI.text = " ";
             yield return new WaitForSeconds(1f);
-            text = GetComponent<Text>();
-            text.color = Color.red;
-            text.text= "UNBALANCED FORCE DETECTED";
-            text.fontSize = 30;
+       textUI.color = Color.red;
+            textUI.text = "Unbalanced Force Detected";
             yield return new WaitForSeconds(1f);
         }
     }
 
-    IEnumerator BlinkingGood()
-    {
-        while(true){
-           
-            text.text= "";
-            
+    IEnumerator Balanced() {
+
+        while (true) {
+
+            textUI.text = " ";
             yield return new WaitForSeconds(1f);
-            
-            text = GetComponent<Text>();
-            text.color = Color.green;
-            text.text= "SUCCESS";
-            
+            textUI.color = Color.green;
+            textUI.text = "Balanced Force Detected";
             yield return new WaitForSeconds(1f);
         }
     }
