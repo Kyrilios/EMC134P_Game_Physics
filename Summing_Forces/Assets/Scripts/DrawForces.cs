@@ -11,13 +11,13 @@ public class DrawForces : MonoBehaviour {
 
 	public bool showTrails = true;
 
-	private List<Vector3> forceVectorList = new List<Vector3>();
+	private List<Vector3> forceList = new List<Vector3>();
 	private LineRenderer lineRenderer;
 	private int numberOfForces;
 	
 	// Use this for initialization
 	void Start () {
-		forceVectorList = GetComponent<PhysicsEngine>().forceVectorList;
+		forceList = GetComponent<PhysicsEngine>().forceList;
 
 		lineRenderer = gameObject.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
@@ -30,10 +30,10 @@ public class DrawForces : MonoBehaviour {
 	void Update () {
 		if (showTrails) {
 			lineRenderer.enabled = true;
-			numberOfForces = forceVectorList.Count;
+			numberOfForces = forceList.Count;
 			lineRenderer.SetVertexCount(numberOfForces * 2);
 			int i = 0;
-			foreach (Vector3 forceVector in forceVectorList) {
+			foreach (Vector3 forceVector in forceList) {
 				lineRenderer.SetPosition(i, Vector3.zero);
 				lineRenderer.SetPosition(i+1, -forceVector);
 				i = i + 2;
@@ -43,4 +43,3 @@ public class DrawForces : MonoBehaviour {
 		}
 	}
 }
- 
